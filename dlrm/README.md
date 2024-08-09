@@ -2,7 +2,7 @@
 
 ## Environment Setup
 
-Running `0_setup_env.sh` on a compute node (via `qsub -I`) will clone both `mlcommons/training` and `torchrec` repositories and create a Conda environment with requirements installed. This script will perform the following tasks:
+Running `0_setup_env.sh` on a compute node (via `qsub -I`) will clone both the `mlcommons/training` and `torchrec` repositories and create a Conda environment with requirements installed. This script will perform the following tasks:
 
 - Load necessary `module`s
 - Clone `mlcommons/training` and apply the `mlcommons_training.patch` patch file
@@ -32,7 +32,7 @@ wget --user-agent Mozilla/4.0 '[your big address here]' -O dest_file_name
 
 ## Splitting Dataset
 
-To streamline the training and overcome the memory requirement to preprocess the dataset, the dataset should be splitted into smaller parts via `1_split_dataset.sh`. An example usage of the script is the following:
+To streamline the training and overcome the memory requirement to preprocess the dataset, the dataset should be split into smaller parts via `1_split_dataset.sh`. An example usage of the script is the following:
 
 ```bash
 ./1_split_dataset.sh <dataset_dir> <split_dir> [split_line]
@@ -50,7 +50,7 @@ Running this script will do the following:
 
 ## Preprocessing Dataset
 
-The dataset preprocessing is required to change the dataset format from TSV to NPY and can be done submitting the `2_preprocess_dataset.sh` script via `qsub`. An example submission command is the following:
+The dataset preprocessing is required to change the dataset format from TSV to NPY and can be done by submitting the `2_preprocess_dataset.sh` script via `qsub`. An example submission command is the following:
 
 ```bash
 qsub -v "DATASET_DIR=/path/to/split_dir,WORKDIR=/path/to/project/root" 2_preprocess_dataset.sh
@@ -58,7 +58,7 @@ qsub -v "DATASET_DIR=/path/to/split_dir,WORKDIR=/path/to/project/root" 2_preproc
 
 ## Training
 
-To launch the training on Polaris the `3_train.sh` batch script should be submitted with the following variables:
+To launch the training on Polaris, the `3_train.sh` batch script should be submitted with the following variables:
 
 ```bash
 qsub -v "DATASET_DIR=/path/to/final_dir,WORKDIR=/path/to/project/root" 3_training.sh
